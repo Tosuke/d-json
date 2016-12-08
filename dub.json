@@ -1,0 +1,23 @@
+{
+	"name": "d-json",
+	"authors": [
+		"tosuke"
+	],
+	"description": "Generate struct definition from JSON.",
+	"copyright": "Copyright © 2016, tosuke",
+	"license": "MIT",
+
+	"configurations": [
+		{
+			"name": "library",
+			"targetType": "library"
+		},
+		{
+			"name": "application",
+			"targetType": "executable",
+			"versions": [
+				"EnableMain"
+			]
+		}
+	]
+}
