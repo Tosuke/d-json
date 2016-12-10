@@ -6,5 +6,4 @@ __dummy.html
 __test__*__
 *.exe
 *.lib
-d-json
 dub.selections.json
