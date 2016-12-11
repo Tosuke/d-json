@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "dependencies": {
+    "djson": {
+      "version": "~master",
+      "targetType": "library",
+      "path": "../../"
+    }
+  },
+  "stringImportPaths": [
+    "."
+  ],
+  "targetType": "executable"
+}

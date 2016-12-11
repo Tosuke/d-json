@@ -6,4 +6,10 @@ __dummy.html
 __test__*__
 *.exe
 *.lib
+*.a
+
 dub.selections.json
+
+# tests
+tests/example/example
+
