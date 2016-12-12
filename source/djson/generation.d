@@ -46,7 +46,7 @@ private:
 
 ///Return type name
 ///JSONValue
-string generateType(immutable(JSONValue) json) pure @safe {
+string generateType(immutable(JSONValue) json) pure @trusted {
   final switch(json.type){
     case JSON_TYPE.STRING:
       return `string`;
@@ -61,19 +61,19 @@ string generateType(immutable(JSONValue) json) pure @safe {
     case JSON_TYPE.OBJECT:
       return generateObject({
         try{
-          return json.objectNoRef;
+          return json.object;
         }catch(Exception e){
           //JSONValue.object is nothrow in this case.
-          return typeof(json.objectNoRef).init;
+          return typeof(json.object).init;
         }
       }());
     case JSON_TYPE.ARRAY:
       return generateArray({
         try{
-          return json.arrayNoRef;
+          return json.array;
         }catch(Exception e){
-          //JSONValue.arrayNoRef is nothrow in this case.
-          return typeof(json.arrayNoRef).init;
+          //JSONValue.array is nothrow in this case.
+          return typeof(json.array).init;
         }
       }());
   }
