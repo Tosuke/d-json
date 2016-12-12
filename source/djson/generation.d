@@ -20,7 +20,7 @@ private class GeneratorException : Exception {
 }
 
 ///Generate type definition
-string generateTypeFromJSON(string json, string name = "Foo", string moduleName = "") @safe {
+string generateTypeFromJSON(string json, string name = "Foo", string moduleName = ""){
   import std.json : parseJSON;
   return generateTypeFromJSONValue(parseJSON(json), name, moduleName);
 }
