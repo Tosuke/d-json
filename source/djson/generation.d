@@ -14,7 +14,7 @@ private{
 * Throws when invalid key-name (as D symbol).
 */
 private class GeneratorException : Exception {
-  this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable next = null) pure nothrow @nogc @safe {
+  this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable next = null){
     super(msg, file, line, next);
   }
 }
