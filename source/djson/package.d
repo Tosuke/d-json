@@ -1,5 +1,5 @@
 module djson;
 
 public{
-  import djson.generator;
+  import djson.generation;
 }

@@ -1,7 +1,6 @@
-import std.typecons : Tuple;
-import std.variant : Algebraic;
+static import std.typecons, std.variant;
 
-alias Foo = Tuple!(
+alias Foo = std.typecons.Tuple!(
 string, "following_url",
 string, "avatar_url",
 long, "public_gists",
@@ -19,11 +18,11 @@ string, "login",
 string, "company",
 string, "type",
 long, "public_repos",
-long, "_1number_key",
 string, "blog",
 long, "id",
 string, "subscriptions_url",
 string, "received_events_url",
+long, "number_key",
 string, "starred_url",
 string, "name",
 bool, "hireable",
