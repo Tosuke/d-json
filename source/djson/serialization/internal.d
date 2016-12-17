@@ -1,6 +1,7 @@
 module djson.serialization.internal;
 
-import std.meta, std.traits, std.typecons;
+import std.meta : Erase, EraseAll, AliasSeq, anySatisfy;
+import std.traits, std.typecons;
 import std.range.primitives;
 import std.json : JSONValue;
 import std.variant : isAlgebraic;
@@ -201,6 +202,6 @@ enum bool isSerializable(T, string s) = isDeserializableType!(typeof(__traits(ge
 enum bool isDeserializable(T, string s) = isDeserializableType!(typeof(__traits(getMember, T.init, s)));
 
 
-template ApplyLeft(alias Template, args...){
-  alias ApplyLeft(right...) = Template!(args, right);
+template LeftApply(alias Template, args...){
+  alias LeftApply(right...) = Template!(args, right);
 }

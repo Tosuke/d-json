@@ -68,7 +68,7 @@ JSONValue[string] serializeToJSONObject(Type)(Type value) if(isObjectType!Type) 
   JSONValue[string] jv;
 
   static if(isFullyNamedTuple!Type){
-    enum symbols = Filter!(ApplyLeft!(isGetter, Type), Type.fieldNames);
+    enum symbols = Filter!(LeftApply!(isGetter, Type), Type.fieldNames);
 
     foreach(sym; symbols){
       jv[sym] = serializeToJSONValue(__traits(getMember, value, sym));
@@ -76,7 +76,7 @@ JSONValue[string] serializeToJSONObject(Type)(Type value) if(isObjectType!Type) 
 
   }else static if((is(Type == struct) || is(Type == class))){
     alias S = Type;
-    enum serializeSymbols = Filter!(ApplyLeft!(isSerializable, S), Filter!(ApplyLeft!(isGetter, S), members!S));
+    enum serializeSymbols = Filter!(LeftApply!(isSerializable, S), Filter!(LeftApply!(isGetter, S), members!S));
 
     foreach(sym; serializeSymbols){
       jv[sym] = serializeToJSONValue(__traits(getMember, value, sym));
@@ -147,10 +147,10 @@ unittest{
     interface IHoge{}
   }
 
-  //enum variables = Filter!(ApplyLeft!(isSerializable, S), Filter!(isVariable!S, members!S));
+  //enum variables = Filter!(LeftApply!(isSerializable, S), Filter!(isVariable!S, members!S));
   //pragma(msg, [variables]);
 
-  //enum properties = Filter!(ApplyLeft!(isSerializable, S), Filter!(isProperty!S, Filter!(isFunction!S, members!S)));
+  //enum properties = Filter!(LeftApply!(isSerializable, S), Filter!(isProperty!S, Filter!(isFunction!S, members!S)));
   //pragma(msg, [properties]);
 
   import std.stdio : writeln;
