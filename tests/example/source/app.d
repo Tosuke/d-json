@@ -11,4 +11,8 @@ void main(){
   string runtimeSource = generateTypeFromJSON(json);
 
   file.write("out.d", runtimeSource);
+
+  file.write("out.json", serializeToJSON(Json.init));
 }
+
+mixin(generateTypeFromJSON(import("in.json"), "Json"));

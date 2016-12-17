@@ -8,11 +8,7 @@ private{
 }
 
 
-/***********************************************
-* Generation error
-*
-* Throws when invalid key-name (as D symbol).
-*/
+///Exception thrown on generation errors
 private class GeneratorException : Exception {
   this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable next = null) pure @safe nothrow {
     super(msg, file, line, next);
