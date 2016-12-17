@@ -8,7 +8,11 @@ import std.variant : Algebraic, isAlgebraic, visit, VariantN;
 ///serialize to JSON
 string serializeToJSON(Type)(Type value, in bool pretty = false, in JSONOptions options = JSONOptions.none){
   auto jv = serializeToJSONValue(value);
-  return toJSON(jv, pretty, options);
+  static if(is(typeof(toJSON(jv, pretty, options)))){
+    return toJSON(jv, pretty, options);
+  }else{
+    return toJSON(&jv, pretty, options);
+  }
 }
 
 ///serialize to JSONValue
