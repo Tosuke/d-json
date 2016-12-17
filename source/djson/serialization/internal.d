@@ -201,4 +201,6 @@ enum bool isSerializable(T, string s) = isDeserializableType!(typeof(__traits(ge
 enum bool isDeserializable(T, string s) = isDeserializableType!(typeof(__traits(getMember, T.init, s)));
 
 
-
+template ApplyLeft(alias Template, args...){
+  alias ApplyLeft(right...) = Template!(args, right);
+}

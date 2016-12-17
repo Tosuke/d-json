@@ -10,5 +10,6 @@
   "stringImportPaths": [
     "."
   ],
+  "dflags-ldc":["-disable-linker-strip-dead"],
   "targetType": "executable"
 }
