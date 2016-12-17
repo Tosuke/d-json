@@ -12,4 +12,5 @@ dub.selections.json
 
 # tests
 tests/example/example
+tests/example/out.json
 

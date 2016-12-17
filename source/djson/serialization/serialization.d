@@ -8,7 +8,7 @@ import std.variant : Algebraic, isAlgebraic, visit, VariantN;
 ///serialize to JSON
 string serializeToJSON(Type)(Type value, in bool pretty = false, in JSONOptions options = JSONOptions.none){
   auto jv = serializeToJSONValue(value);
-  return toJSON(&jv, pretty, options);
+  return toJSON(jv, pretty, options);
 }
 
 ///serialize to JSONValue
@@ -35,6 +35,12 @@ JSONValue serializeToJSONValue(Type)(Type value){
   }else static if(isStringType!Type){
     jv.str = value.to!string;
   
+  }else static if(isBooleanType!Type){
+    jv = JSONValue(value);
+  
+  }else static if(isNullType!Type){
+    jv = JSONValue(null);
+
   }else static if(isArrayType!Type){
     jv.array = serializeToJSONArray(value);
   
@@ -160,4 +166,6 @@ unittest{
   A alg;
   alg = 45;
   alg.serializeToJSON.writeln;
+
+  null.serializeToJSON.writeln;
 }

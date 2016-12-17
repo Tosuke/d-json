@@ -10,9 +10,12 @@ template isSerializableType(T...){
     enum bool isSerializableType =
       is(Unqual!T == JSONValue) ||
       isAlgebraic!T ||
+
       isSerializableIntegerType!T ||
       isSerializableFloatingType!T ||
       isSerializableStringType!T ||
+      isSerializableBooleanType!T ||
+      isSerializableNullType!T ||
       isSerializableArrayType!T ||
       isSerializableObjectType!T;
   }else{
@@ -29,6 +32,8 @@ template isDeserializableType(T...){
       isDeserializableIntegerType!T ||
       isDeserializableFloatingType!T ||
       isDeserializableStringType!T ||
+      isDeserializableBooleanType!T ||
+      isDeserializableNullType!T ||
       isDeserializableArrayType!T ||
       isDeserializableObjectType!T;
   }else{
@@ -49,6 +54,16 @@ alias isFloatingType = isSerializableFloatingType;
 alias isSerializableStringType = isSomeString;
 alias isDeserializableStringType = isSomeString;
 alias isStringType = isSerializableStringType;
+
+
+alias isSerializableBooleanType = isBoolean;
+alias isDeserializableBooleanType = isBoolean;
+alias isBooleanType = isSerializableBooleanType;
+
+
+enum isNullType(T) = is(Unqual!T == typeof(null));
+alias isSerializableNullType = isNullType;
+alias isDeserializableNullType = isNullType;
 
 
 template isSerializableObjectType(T){
@@ -80,7 +95,7 @@ alias isObjectType = isSerializableObjectType;
 
 template isSerializableArrayType(T){
   enum bool isSerializableArrayType =
-    !isAssociativeArray!T && (
+    !isAssociativeArray!T && !isFullyNamedTuple!T && (
       is(typeof({
         foreach(unused; T.init){}
       })) ||
